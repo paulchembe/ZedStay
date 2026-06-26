@@ -8,6 +8,7 @@
 .build/
 .buildlog/
 .history
+.env
 .svn/
 .swiftpm/
 migrate_working_dir/
@@ -30,6 +31,7 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
+.supabase_keys/
 /build/
 /coverage/
 
