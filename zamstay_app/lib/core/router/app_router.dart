@@ -5,6 +5,10 @@ import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/register_screen.dart';
 import '../../features/auth/presentation/screens/splash_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
+import '../../features/listings/presentation/screens/create_listing_screen.dart';
+import '../../features/listings/presentation/screens/my_listings_screen.dart';
+
+
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: '/',
@@ -27,6 +31,9 @@ final routerProvider = Provider<GoRouter>((ref) {
       return null;
     },
     routes: [
+
+      GoRoute(path: '/create-listing', builder: (context, state) => const CreateListingScreen()),
+      GoRoute(path: '/my-listings', builder: (context, state) => const MyListingsScreen()),
       GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
       GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
       GoRoute(path: '/register', builder: (context, state) => const RegisterScreen()),
