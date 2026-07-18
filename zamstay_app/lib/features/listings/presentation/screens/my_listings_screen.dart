@@ -41,7 +41,8 @@ class MyListingsScreen extends ConsumerWidget {
                       style: TextStyle(
                           fontSize: 18, fontWeight: FontWeight.w500)),
                   const SizedBox(height: 8),
-                  const Text('Tap the button below to add your first property',
+                  const Text(
+                      'Tap the button below to add your first property',
                       style: TextStyle(color: Colors.grey)),
                 ],
               ),
@@ -58,6 +59,10 @@ class MyListingsScreen extends ConsumerWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
                 child: ListTile(
+                  onTap: () => context.push(
+                    '/listing/${listing.id}',
+                    extra: listing,
+                  ),
                   contentPadding: const EdgeInsets.all(12),
                   leading: listing.photoUrls.isNotEmpty
                       ? ClipRRect(
@@ -80,12 +85,14 @@ class MyListingsScreen extends ConsumerWidget {
                               color: Colors.grey),
                         ),
                   title: Text(listing.title,
-                      style: const TextStyle(fontWeight: FontWeight.w600)),
+                      style:
+                          const TextStyle(fontWeight: FontWeight.w600)),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(listing.city),
-                      Text('K ${listing.pricePerNight.toStringAsFixed(0)}/night',
+                      Text(
+                          'K ${listing.pricePerNight.toStringAsFixed(0)}/night',
                           style: const TextStyle(
                               color: Color(0xFF0F6E56),
                               fontWeight: FontWeight.w500)),
@@ -98,10 +105,12 @@ class MyListingsScreen extends ConsumerWidget {
                         await repo.deleteListing(listing.id);
                         ref.invalidate(myListingsProvider);
                       } else if (value == 'deactivate') {
-                        await repo.toggleListingStatus(listing.id, 'inactive');
+                        await repo.toggleListingStatus(
+                            listing.id, 'inactive');
                         ref.invalidate(myListingsProvider);
                       } else if (value == 'activate') {
-                        await repo.toggleListingStatus(listing.id, 'active');
+                        await repo.toggleListingStatus(
+                            listing.id, 'active');
                         ref.invalidate(myListingsProvider);
                       }
                     },
@@ -112,7 +121,8 @@ class MyListingsScreen extends ConsumerWidget {
                             child: Text('Deactivate')),
                       if (listing.status == 'inactive')
                         const PopupMenuItem(
-                            value: 'activate', child: Text('Activate')),
+                            value: 'activate',
+                            child: Text('Activate')),
                       const PopupMenuItem(
                           value: 'delete',
                           child: Text('Delete',
