@@ -184,9 +184,10 @@ class ListingDetailScreen extends ConsumerWidget {
           onPressed: () => context.push(
             '/book-request',
             extra: {
+              'listingId': listing.id,
               'hostId': listing.hostId,
-              'listingTitle': listing.title,
-              'listingCity': listing.city,
+              'listingTitle': listing.title ?? 'Unknown',
+              'listingCity': listing.city ?? 'Unknown',
               'pricePerNight': listing.pricePerNight,
             },
           ),
