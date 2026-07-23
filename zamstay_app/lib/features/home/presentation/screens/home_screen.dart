@@ -79,6 +79,17 @@ class HomeScreen extends ConsumerWidget {
                     horizontal: 24, vertical: 12),
               ),
             ),
+            const SizedBox(height: 12),
+            ElevatedButton.icon(
+              onPressed: () => context.go('/messages'),
+              icon: const Icon(Icons.chat_outlined),
+              label: const Text('Messages'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF534AB7),
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              ),
+            ),
           ],
         ),
       ),

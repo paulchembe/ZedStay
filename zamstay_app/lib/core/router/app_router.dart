@@ -14,6 +14,8 @@ import '../../features/bookings/presentation/screens/booking_request_screen.dart
 import '../../features/bookings/presentation/screens/my_bookings_screen.dart';
 import '../../features/bookings/presentation/screens/host_bookings_screen.dart';
 import '../../features/search/presentation/screens/search_screen.dart';
+import '../../features/messaging/presentation/screens/chat_screen.dart';
+import '../../features/messaging/presentation/screens/conversations_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
@@ -82,6 +84,21 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/search',
         builder: (context, state) => const SearchScreen(),
+      ),
+      GoRoute(
+        path: '/messages',
+        builder: (context, state) => const ConversationsScreen(),
+      ),
+      GoRoute(
+        path: '/chat',
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>;
+          return ChatScreen(
+            conversationId: extra['conversationId'],
+            otherPersonName: extra['otherPersonName'],
+            listingTitle: extra['listingTitle'],
+          );
+        },
       ),
 
       // Bookings
