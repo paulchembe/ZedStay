@@ -58,6 +58,11 @@ class MyListingsScreen extends ConsumerWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
                 child: ListTile(
+                  
+                  onTap: () => context.go(
+                    '/listing-detail',
+                    extra: listing,
+                  ),
                   contentPadding: const EdgeInsets.all(12),
                   leading: listing.photoUrls.isNotEmpty
                       ? ClipRRect(

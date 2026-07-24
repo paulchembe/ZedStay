@@ -23,7 +23,6 @@ class HomeScreen extends ConsumerWidget {
           )
         ],
       ),
-      // Inside HomeScreen's build method, replace the body with:
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -41,7 +40,8 @@ class HomeScreen extends ConsumerWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF1B3A6B),
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 24, vertical: 12),
               ),
             ),
             const SizedBox(height: 12),
@@ -51,6 +51,41 @@ class HomeScreen extends ConsumerWidget {
               label: const Text('Add New Listing'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF0F6E56),
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 24, vertical: 12),
+              ),
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton.icon(
+              onPressed: () => context.go('/host-bookings'),
+              icon: const Icon(Icons.inbox_outlined),
+              label: const Text('Booking Requests'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFBA7517),
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              ),
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton.icon(
+              onPressed: () => context.go('/bookings'),
+              icon: const Icon(Icons.book_online_outlined),
+              label: const Text('My Bookings'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF185FA5),
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 24, vertical: 12),
+              ),
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton.icon(
+              onPressed: () => context.go('/messages'),
+              icon: const Icon(Icons.chat_outlined),
+              label: const Text('Messages'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF534AB7),
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               ),
