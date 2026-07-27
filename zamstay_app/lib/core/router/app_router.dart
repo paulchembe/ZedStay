@@ -10,6 +10,7 @@ import '../../features/listings/presentation/screens/my_listings_screen.dart';
 import '../../features/bookings/presentation/screens/my_bookings_screen.dart';
 import '../../features/bookings/presentation/screens/host_bookings_screen.dart';
 import '../../features/search/presentation/screens/search_screen.dart';
+import '../../features/admin/presentation/screens/admin_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
@@ -42,6 +43,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/register',
         builder: (context, state) => const RegisterScreen(),
+      ),
+      GoRoute(
+        path: '/admin',
+        builder: (context, state) => const AdminScreen(),
       ),
       GoRoute(
         path: '/home',

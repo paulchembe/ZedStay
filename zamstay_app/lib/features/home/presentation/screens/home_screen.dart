@@ -68,6 +68,41 @@ class HomeScreen extends ConsumerWidget {
                     horizontal: 24, vertical: 12),
               ),
             ),
+            // Add this below the other buttons
+            Consumer(
+              builder: (context, ref, _) {
+                final user = Supabase.instance.client.auth.currentUser;
+                // Check role from metadata or users table
+                return FutureBuilder(
+                  future: Supabase.instance.client
+                      .from('users')
+                      .select('role')
+                      .eq('id', user?.id ?? '')
+                      .single(),
+                  builder: (context, snapshot) {
+                    if (snapshot.data?['role'] == 'admin') {
+                      return Column(
+                        children: [
+                          const SizedBox(height: 12),
+                          ElevatedButton.icon(
+                            onPressed: () => context.go('/admin'),
+                            icon: const Icon(Icons.admin_panel_settings),
+                            label: const Text('Admin Dashboard'),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red.shade700,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 12),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                    return const SizedBox();
+                  },
+                );
+              },
+),
             const SizedBox(height: 12),
             ElevatedButton.icon(
               onPressed: () => context.go('/bookings'),
