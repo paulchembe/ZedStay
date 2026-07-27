@@ -62,7 +62,13 @@ class ListingRepository {
   }
 
   // Get all listings (for search)
-  Future<List<ListingModel>> getListings({String? city, String? type, double? maxPrice}) async {
+ 
+  Future<List<ListingModel>> getListings({
+    String? city,
+    String? type,
+    double? maxPrice,
+  }) async {
+  try {
     var query = _client
         .from('listings')
         .select('*, listing_photos(*)')
@@ -79,8 +85,15 @@ class ListingRepository {
     }
 
     final response = await query.order('created_at', ascending: false);
-    return (response as List).map((json) => ListingModel.fromJson(json)).toList();
+    print('Listings response: ${response.length} items found');
+    return (response as List)
+        .map((json) => ListingModel.fromJson(json))
+        .toList();
+  } catch (e) {
+    print('Error fetching listings: $e');
+    rethrow;
   }
+}
 
   // Get listings by current host
   Future<List<ListingModel>> getMyListings() async {
