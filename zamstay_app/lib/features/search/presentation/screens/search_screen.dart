@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../listings/domain/listing_model.dart';
 import '../../../listings/presentation/providers/listing_provider.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 // Search filters state
 class SearchFilters {
@@ -79,6 +80,34 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       ),
       body: Column(
         children: [
+          // Connectivity banner
+          StreamBuilder<List<ConnectivityResult>>(
+            stream: Connectivity().onConnectivityChanged,
+            builder: (context, snapshot) {
+              final isOffline = snapshot.data != null &&
+                  snapshot.data!.isNotEmpty &&
+                  snapshot.data!.first == ConnectivityResult.none;
+              if (!isOffline) return const SizedBox();
+              return Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                    vertical: 8, horizontal: 16),
+                color: Colors.orange,
+                child: const Row(
+                  children: [
+                    Icon(Icons.wifi_off,
+                        color: Colors.white, size: 16),
+                    SizedBox(width: 8),
+                    Text(
+                      'You are offline — showing cached listings',
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 13),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
           // Search bar
           Padding(
             padding: const EdgeInsets.all(16),
